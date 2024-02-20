@@ -24,7 +24,7 @@ Resources:
 Outputs:
   QuicksightPermissionsArn:
     Description: Arn for QuicksightPermissions lambda function
-    Value: !Ref QuicksightPermissions.Arn
+    Value: !GetAtt QuicksightPermissions.Arn
     Export:
       Name: !Sub '${AWS::StackName}-QuicksightPermissions-Lambda-Arn'
   
