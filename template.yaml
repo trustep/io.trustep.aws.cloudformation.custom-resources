@@ -1,0 +1,35 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Deploy lambdas to create custom resources using cloudformation
+
+Resources:
+  QuicksightPermissions:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs10.x
+      CodeUri: lambda/quicksight-permissions
+      Description: 'Cloudformation Custom Resource for Quicksight Permissions'
+      MemorySize: 128
+      Timeout: 28
+            
+  QuicksightPermissionsLambdaPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref QuicksightPermissions
+      Principal: cloudformation.amazonaws.com
+
+Outputs:
+  QuicksightPermissionsArn:
+    Description: Arn for QuicksightPermissions lambda function
+    Value: !Ref QuicksightPermissions.Arn
+    Export:
+      Name: !Sub '${AWS::StackName}-QuicksightPermissions-Lambda-Arn'
+  
+  QuicksightPermissionsName:
+    Description: Name for QuicksightPermissions lambda function
+    Value: !Ref QuicksightPermissions
+    Export:
+      Name: !Sub '${AWS::StackName}-QuicksightPermissions-Lambda-Name'

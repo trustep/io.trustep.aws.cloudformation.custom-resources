@@ -1,0 +1,133 @@
+name: Pipeline
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'develop'
+      - 'feature**'
+  delete:
+    branches:
+      - 'feature**'
+  pull_request:
+    types: 
+      - opened
+      - synchronize
+      - reopened
+
+env:
+  SAM_CLI_TELEMETRY: 0
+
+jobs:
+  # test:
+  #   if: github.event_name == 'push'
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - run: |
+  #         # trigger the tests here
+  sonarcloud:
+    name: SonarCloud
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  setup-vars:
+    runs-on: ubuntu-latest
+    needs: [sonarcloud]
+    outputs:
+      SAM_TEMPLATE: template.yaml
+      SAM_CONFIG_FILENAME: samconfig.toml
+      TESTING_STACK_NAME: cfn-custom-resources-qa
+      TESTING_PIPELINE_EXECUTION_ROLE: arn:aws:iam::881131903847:role/aws-sam-cli-managed-QA-pipel-PipelineExecutionRole-170Z4IY27MVCH
+      TESTING_CLOUDFORMATION_EXECUTION_ROLE: arn:aws:iam::881131903847:role/aws-sam-cli-managed-QA-pi-CloudFormationExecutionR-11F32QN4PXJEN
+      TESTING_ARTIFACTS_BUCKET: io.trustep.manager.cf.templates
+      TESTING_REGION: us-east-1
+      PROD_STACK_NAME: cfn-custom-resources-prod
+      PROD_PIPELINE_EXECUTION_ROLE: arn:aws:iam::881131903847:role/aws-sam-cli-managed-PROD-pip-PipelineExecutionRole-AQWFOONY1SVE
+      PROD_CLOUDFORMATION_EXECUTION_ROLE: arn:aws:iam::881131903847:role/aws-sam-cli-managed-PROD-CloudFormationExecutionR-1JFLZ10SP2MPJ
+      PROD_ARTIFACTS_BUCKET: io.trustep.manager.cf.templates
+      PROD_REGION: us-east-1
+      FEATURE_STACK_NAME: ${{steps.step1.outputs.featureName}}
+    steps:
+      - id: step1
+        name: Setup Feature Stack name
+        env:
+          FEATURE_BRANCH_NAME: ${{github.event.ref}}
+        run: |
+          FEATURE_STACK_NAME=$(echo ${FEATURE_BRANCH_NAME##*/} | tr -cd '[a-zA-Z0-9-]')
+          echo "featureName=${FEATURE_STACK_NAME}" >> $GITHUB_OUTPUT
+
+  undeploy-feature:
+    if: startsWith(github.event.ref, 'feature') && github.event_name == 'delete'
+    needs: [setup-vars]
+    uses: trustep/io.trustep.github.workflows/.github/workflows/sam-undeploy-pipeline.yaml@v1.0.0
+    with:
+      stack_name: ${{needs.setup-vars.outputs.FEATURE_STACK_NAME}}
+      pipeline_execution_role_arn: ${{needs.setup-vars.outputs.TESTING_PIPELINE_EXECUTION_ROLE}}
+      artifacts_s3_bucket_name: ${{needs.setup-vars.outputs.TESTING_ARTIFACTS_BUCKET}}
+      region: ${{needs.setup-vars.outputs.TESTING_REGION}}
+      sam_config_filename: ${{needs.setup-vars.outputs.SAM_CONFIG_FILENAME}}
+      sam_config_environment_name: QA
+    secrets: inherit
+          
+  deploy-feature:
+    # this stage is triggered only for feature branches (feature*),
+    # which will build the stack and deploy to a stack named with branch name.
+    if: startsWith(github.ref, 'refs/heads/feature') && github.event_name == 'push'
+    needs: [setup-vars]
+    uses: trustep/io.trustep.github.workflows/.github/workflows/sam-deploy-pipeline.yaml@v1.0.0
+    with:
+      sam_template: ${{needs.setup-vars.outputs.SAM_TEMPLATE}}
+      stack_name: ${{needs.setup-vars.outputs.FEATURE_STACK_NAME}}
+      pipeline_execution_role_arn: ${{needs.setup-vars.outputs.TESTING_PIPELINE_EXECUTION_ROLE}}
+      cloudformation_execution_role_arn: ${{needs.setup-vars.outputs.TESTING_CLOUDFORMATION_EXECUTION_ROLE}}
+      artifacts_s3_bucket_name: ${{needs.setup-vars.outputs.TESTING_ARTIFACTS_BUCKET}}
+      region: ${{needs.setup-vars.outputs.TESTING_REGION}}
+      sam_config_filename: ${{needs.setup-vars.outputs.SAM_CONFIG_FILENAME}}
+      sam_config_environment_name: QA
+      replacement_variable_list: DISCRIMINATOR
+      replacement_value_list: "-${{needs.setup-vars.outputs.FEATURE_STACK_NAME}}"
+    secrets: inherit
+
+  deploy-develop:
+    if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
+    needs: [setup-vars]
+    uses: trustep/io.trustep.github.workflows/.github/workflows/sam-deploy-pipeline.yaml@v1.0.0
+    with:
+      sam_template: ${{needs.setup-vars.outputs.SAM_TEMPLATE}}
+      stack_name: ${{needs.setup-vars.outputs.TESTING_STACK_NAME}}
+      pipeline_execution_role_arn: ${{needs.setup-vars.outputs.TESTING_PIPELINE_EXECUTION_ROLE}}
+      cloudformation_execution_role_arn: ${{needs.setup-vars.outputs.TESTING_CLOUDFORMATION_EXECUTION_ROLE}}
+      artifacts_s3_bucket_name: ${{needs.setup-vars.outputs.TESTING_ARTIFACTS_BUCKET}}
+      region: ${{needs.setup-vars.outputs.TESTING_REGION}}
+      sam_config_filename: ${{needs.setup-vars.outputs.SAM_CONFIG_FILENAME}}
+      sam_config_environment_name: QA
+      replacement_variable_list: DISCRIMINATOR
+      replacement_value_list: ""
+    secrets: inherit
+
+  deploy-prod:
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: [setup-vars]
+    uses: trustep/io.trustep.github.workflows/.github/workflows/sam-deploy-pipeline.yaml@v1.0.0
+    with:
+      sam_template: ${{needs.setup-vars.outputs.SAM_TEMPLATE}}
+      stack_name: ${{needs.setup-vars.outputs.PROD_STACK_NAME}}
+      pipeline_execution_role_arn: ${{needs.setup-vars.outputs.PROD_PIPELINE_EXECUTION_ROLE}}
+      cloudformation_execution_role_arn: ${{needs.setup-vars.outputs.PROD_CLOUDFORMATION_EXECUTION_ROLE}}
+      artifacts_s3_bucket_name: ${{needs.setup-vars.outputs.PROD_ARTIFACTS_BUCKET}}
+      region: ${{needs.setup-vars.outputs.PROD_REGION}}
+      sam_config_filename: ${{needs.setup-vars.outputs.SAM_CONFIG_FILENAME}}
+      sam_config_environment_name: PROD
+      replacement_variable_list: DISCRIMINATOR
+      replacement_value_list: ""
+    secrets: inherit
+
+

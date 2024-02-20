@@ -1,0 +1,8 @@
+version=0.1
+[QA.deploy.parameters]
+capabilities = "CAPABILITY_NAMED_IAM"
+parameter_overrides = "Env=\"qa\" Stage=\"qa\" ClientId=\"7u56kkuv7pca1tpcka6nm8pdla\" UserPoolId=\"us-east-1_NupL224jJ\" Region=\"us-east-1\" KMSKeyId=\"50c509cd-dacf-4506-bd3f-f715736a26b7\" S3StackName=\"MNG-Buckets-QA\" SecretKey=\"credentials/qa/manager_db/manager.json\" SecretBucket=\"mng-buckets-qa-credentialsdata-1e0oob37njnh1\" SecurityGroupId=\"sg-bd6e5c95\" SubnetIds=\"subnet-c8f0ddf6,subnet-ef3228b3\" CustomDomain=\"api.trustep.io\" BasePathName=\"manager-qa\" BasePathDiscriminator=\"%DISCRIMINATOR%\" AllowedOrigin=\"https://manager-qa.trustep.io\""
+
+[PROD.deploy.parameters]
+capabilities = "CAPABILITY_NAMED_IAM"
+parameter_overrides = "Env=\"prod\" " 
