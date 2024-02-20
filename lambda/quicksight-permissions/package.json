@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Custom Cloudformation Resource implementation for Quicksight Permissions",
   "main": "index.js",
+  "type": "module",
   "jest": {
     "verbose": true,
     "testTimeout": 500000
