@@ -40,7 +40,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   setup-vars:
     runs-on: ubuntu-latest
-    needs: [sonarcloud]
     outputs:
       SAM_TEMPLATE: template.yaml
       SAM_CONFIG_FILENAME: samconfig.toml
