@@ -51,17 +51,28 @@ function sendResponse(event, context, responseStatus, responseData) {
 
 export async function handler(event, context) {
     console.log("REQUEST RECEIVED:\n" + JSON.stringify(event));
+    console.log("CONTEXT RECEIVED:\n" + JSON.stringify(context));
+
+    var responseStatus = "FAILED";
     
     // For Delete requests, immediately send a SUCCESS response.
-    if (event.RequestType == "Delete") {
+    if (event.RequestType == "Create") {
+        sendResponse(event, context, "SUCCESS");
+        return;
+    } else if (event.RequestType == "Update") {
+        sendResponse(event, context, "SUCCESS");
+        return;
+    } else if (event.RequestType == "Delete") {
         sendResponse(event, context, "SUCCESS");
         return;
     }
  
-    var responseStatus = "FAILED";
-    var responseData = {};
+    var responseData = {
+        Status: responseStatus,
+        Reason: "Impossible to process request"
+    };
 
-    return null;
+    sendResponse(event, context, responseStatus, responseData);
 }
 
 // var context = {
