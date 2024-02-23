@@ -37,7 +37,7 @@ To declare this entity in your AWS CloudFormation template, use the following sy
 The IAM action to grant permissions on\.
 On update, removed actions will be revoked.
 
-*Required*: Yes
+*Required*: Yes  
 *Type*: List of String  
 *Update requires*: [No interruption](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt)
 
