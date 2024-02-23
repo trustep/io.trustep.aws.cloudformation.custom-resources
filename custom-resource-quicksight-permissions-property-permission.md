@@ -1,32 +1,44 @@
 # Custom::QuicksightPermissions QuicksightPermission<a name="custom-resource-quicksight-permissions-property-permissions"></a>
 
-Describes a set of permissions to be applied to a set of principals\.
+Describes a set of permissions to be given to a set of principals\.
 
 ## Syntax<a name="custom-resource-quicksight-permissions-property-permissions-syntax"></a>
 
 To declare this entity in your AWS CloudFormation template, use the following syntax:
 
-### JSON<a name="custom-resource-quicksight-permissions-property-permissions-syntax.json"></a>
+<a name="custom-resource-quicksight-permissions-property-permissions-syntax.json"></a>
+### JSON
 
 ```
 {
   "[Actions](#cfn-custom-resource-quicksight-permissions-property-permissions-actions)" : [ String, ... ],
-  "[Principals](#cfn-custom-resource-quicksight-permissions-property-permissions-principals)" : [ String, ... ],
+  "[Principals](#cfn-custom-resource-quicksight-permissions-property-permissions-principals)" : [ String, ... ]
 }
 ```
 
-### YAML<a name="aws-properties-quicksight-analysis-resourcepermission-syntax.yaml"></a>
+<pre>
+ <code>{
+  <a href="#cfn-custom-resource-quicksight-permissions-property-permissions-actions">Actions</a> : [ String, ...]
+  <a href="#cfn-custom-resource-quicksight-permissions-property-permissions-principals">Principals</a> : [ String, ... ]
+}</code>
+</pre>
 
-```
-  [Actions](#cfn-custom-resource-quicksight-permissions-property-permissions-actions): 
+<a name="aws-properties-quicksight-analysis-resourcepermission-syntax.yaml"></a>
+### YAML
+
+<pre>
+ <code>
+  <a href="#cfn-custom-resource-quicksight-permissions-property-permissions-actions">Actions</a>:
     - String
-  [Principals](#cfn-custom-resource-quicksight-permissions-property-permissions-principals): 
+  <a href="#cfn-custom-resource-quicksight-permissions-property-permissions-principals">Principals</a>:
     - String
-```
+ </code>
+</pre>
 
 ## Properties<a name="custom-resource-quicksight-permissions-property-permissions-properties"></a>
 
-`Actions`  <a name="cfn-custom-resource-quicksight-permissions-property-permissions-actions"></a>
+<a name="cfn-custom-resource-quicksight-permissions-property-permissions-actions"></a>
+`Actions`
 The IAM action to grant permissions on\. On update, removed actions will be revoked.
 *Required*: Yes
 *Type*: List of String  

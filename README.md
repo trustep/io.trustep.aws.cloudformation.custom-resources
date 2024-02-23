@@ -114,7 +114,7 @@ The ID of the AWS Quicksight Topic that the permissions will be defined to. Just
 A structure that describes the principals and the resource\-level permissions on the element\. You can use the `Permissions` structure to grant permissions by providing a list of AWS Identity and Access Management \(IAM\) action information for each principal listed by Amazon Resource Name \(ARN\)\.
 To specify no permissions, omit `Permissions`\.  
 *Required*: Yes
-*Type*: List of [QuicksightPermission](custom-resource-quicksight-permissions-property-permission.md)  
+*Type*: List of [Permission](custom-resource-quicksight-permissions-property-permission.md)  
 *Update requires*: [No interruption](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt)
 
 ## Return values<a name="custom-resource-quicksight-permissions-return-values"></a>
