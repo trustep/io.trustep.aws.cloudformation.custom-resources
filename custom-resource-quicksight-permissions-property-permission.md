@@ -12,8 +12,8 @@ To declare this entity in your AWS CloudFormation template, use the following sy
 <pre>
  <code>
 {
-  <a href="#cfn-custom-resource-quicksight-permissions-property-permissions-actions">Actions</a> : [ String, ... ]
-  <a href="#cfn-custom-resource-quicksight-permissions-property-permissions-principals">Principals</a> : [ String, ... ]
+  <a href="#actions">Actions</a> : [ String, ... ]
+  <a href="#principals">Principals</a> : [ String, ... ]
 }
 </code>
 </pre>
@@ -23,16 +23,14 @@ To declare this entity in your AWS CloudFormation template, use the following sy
 
 <pre>
  <code>
-  <a href="#cfn-custom-resource-quicksight-permissions-property-permissions-actions">Actions</a>:
+  <a href="#actions">Actions</a>:
     - String
-  <a href="#cfn-custom-resource-quicksight-permissions-property-permissions-principals">Principals</a>:
+  <a href="#principals">Principals</a>:
     - String
  </code>
 </pre>
 
 ## Properties<a name="custom-resource-quicksight-permissions-property-permissions-properties"></a>
-
-<a name="cfn-custom-resource-quicksight-permissions-property-permissions-actions"></a>
 
 ### `Actions`
 
@@ -40,8 +38,6 @@ The IAM action to grant permissions on\. On update, removed actions will be revo
 *Required*: Yes
 *Type*: List of String  
 *Update requires*: [No interruption](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt)
-
-<a name="cfn-custom-resource-quicksight-permissions-property-permissions-principals"></a>
 
 ### `Principals`  
 
