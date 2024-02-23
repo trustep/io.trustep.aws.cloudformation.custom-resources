@@ -63,79 +63,190 @@ The Service Token that implements this custom resource\.
 
 ### `AnalysisId`
 
-The ID of the AWS Quicksight Analysis that the permissions will be defined to. Just one of these properties should be specified: AnalsysisId, DashboardId, DataSetId, DataSourceId, FolderId, RoleCustomId, TemplateId, ThemeId, TopicId\.  
+The ID of the AWS Quicksight Analysis that the permissions will be defined to.
 
-*Required*: Yes  
+Just one of these properties should be specified:
+
+- AnalsysisId
+- DashboardId
+- DataSetId
+- DataSourceId
+- FolderId
+- RoleCustomId
+- TemplateId
+- ThemeId
+- TopicId
+
+*Required*: Yes (Only one of the Id properties)  
 *Type*: String  
 *Update requires*: [Replacement](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement)
 
 ### `DashboardId`
 
-The ID of the AWS Quicksight Dashboard that the permissions will be defined to. Just one of these properties should be specified: AnalsysisId, DashboardId, DataSetId, DataSourceId, FolderId, RoleCustomId, TemplateId, ThemeId, TopicId\.  
+The ID of the AWS Quicksight Dashboard that the permissions will be defined to.
 
-*Required*: Yes  
+Just one of these properties should be specified:
+
+- AnalsysisId
+- DashboardId
+- DataSetId
+- DataSourceId
+- FolderId
+- RoleCustomId
+- TemplateId
+- ThemeId
+- TopicId
+
+*Required*: Yes (Only one of the Id properties)  
 *Type*: String  
 *Update requires*: [Replacement](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement)
 
 ### `DataSetId`
 
-The ID of the AWS Quicksight Data Set that the permissions will be defined to. Just one of these properties should be specified: AnalsysisId, DashboardId, DataSetId, DataSourceId, FolderId, RoleCustomId, TemplateId, ThemeId, TopicId\.  
+The ID of the AWS Quicksight Data Set that the permissions will be defined to.
 
-*Required*: Yes  
+Just one of these properties should be specified:
+
+- AnalsysisId
+- DashboardId
+- DataSetId
+- DataSourceId
+- FolderId
+- RoleCustomId
+- TemplateId
+- ThemeId
+- TopicId
+
+*Required*: Yes (Only one of the Id properties)  
 *Type*: String  
 *Update requires*: [Replacement](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement)
 
 ### `DataSourceId`
 
-The ID of the AWS Quicksight Data Source that the permissions will be defined to. Just one of these properties should be specified: AnalsysisId, DashboardId, DataSetId, DataSourceId, FolderId, RoleCustomId, TemplateId, ThemeId, TopicId\.  
+The ID of the AWS Quicksight Data Source that the permissions will be defined to.
 
-*Required*: Yes  
+Just one of these properties should be specified:
+
+- AnalsysisId
+- DashboardId
+- DataSetId
+- DataSourceId
+- FolderId
+- RoleCustomId
+- TemplateId
+- ThemeId
+- TopicId
+
+*Required*: Yes (Only one of the Id properties)  
 *Type*: String  
 *Update requires*: [Replacement](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement)
 
 ### `FolderId`
 
-The ID of the AWS Quicksight Folder that the permissions will be defined to. Just one of these properties should be specified: AnalsysisId, DashboardId, DataSetId, DataSourceId, FolderId, RoleCustomId, TemplateId, ThemeId, TopicId\.  
+The ID of the AWS Quicksight Folder that the permissions will be defined to.
 
-*Required*: Yes  
+Just one of these properties should be specified:
+
+- AnalsysisId
+- DashboardId
+- DataSetId
+- DataSourceId
+- FolderId
+- RoleCustomId
+- TemplateId
+- ThemeId
+- TopicId
+
+*Required*: Yes (Only one of the Id properties)  
 *Type*: String  
 *Update requires*: [Replacement](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement)
 
 ### `RoleCustomId`
 
-The ID of the AWS Quicksight Role Custom that the permissions will be defined to. Just one of these properties should be specified: AnalsysisId, DashboardId, DataSetId, DataSourceId, FolderId, RoleCustomId, TemplateId, ThemeId, TopicId\.  
+The ID of the AWS Quicksight Role Custom that the permissions will be defined to.
 
-*Required*: Yes  
+Just one of these properties should be specified:
+
+- AnalsysisId
+- DashboardId
+- DataSetId
+- DataSourceId
+- FolderId
+- RoleCustomId
+- TemplateId
+- ThemeId
+- TopicId
+
+*Required*: Yes (Only one of the Id properties)  
 *Type*: String  
 *Update requires*: [Replacement](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement)
 
 ### `TemplateId`
 
-The ID of the AWS Quicksight Template that the permissions will be defined to. Just one of these properties should be specified: AnalsysisId, DashboardId, DataSetId, DataSourceId, FolderId, RoleCustomId, TemplateId, ThemeId, TopicId\.  
+The ID of the AWS Quicksight Template that the permissions will be defined to.
 
-*Required*: Yes  
+Just one of these properties should be specified:
+
+- AnalsysisId
+- DashboardId
+- DataSetId
+- DataSourceId
+- FolderId
+- RoleCustomId
+- TemplateId
+- ThemeId
+- TopicId
+
+*Required*: Yes (Only one of the Id properties)  
 *Type*: String  
 *Update requires*: [Replacement](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement)
 
 ### ThemeId`
 
-The ID of the AWS Quicksight Theme that the permissions will be defined to. Just one of these properties should be specified: AnalsysisId, DashboardId, DataSetId, DataSourceId, FolderId, RoleCustomId, TemplateId, ThemeId, TopicId\.  
+The ID of the AWS Quicksight Theme that the permissions will be defined to.
 
-*Required*: Yes  
+Just one of these properties should be specified:
+
+- AnalsysisId
+- DashboardId
+- DataSetId
+- DataSourceId
+- FolderId
+- RoleCustomId
+- TemplateId
+- ThemeId
+- TopicId
+
+*Required*: Yes (Only one of the Id properties)  
 *Type*: String  
 *Update requires*: [Replacement](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement)
 
 ### `TopicId`
 
-The ID of the AWS Quicksight Topic that the permissions will be defined to. Just one of these properties should be specified: AnalsysisId, DashboardId, DataSetId, DataSourceId, FolderId, RoleCustomId, TemplateId, ThemeId, TopicId\.  
+The ID of the AWS Quicksight Topic that the permissions will be defined to.
 
-*Required*: Yes  
+Just one of these properties should be specified:
+
+- AnalsysisId
+- DashboardId
+- DataSetId
+- DataSourceId
+- FolderId
+- RoleCustomId
+- TemplateId
+- ThemeId
+- TopicId
+
+*Required*: Yes (Only one of the Id properties)  
 *Type*: String  
 *Update requires*: [Replacement](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement)
 
 ### `Permissions`
 
-A structure that describes the principals and the resource\-level permissions on the element\. You can use the `Permissions` structure to grant permissions by providing a list of AWS Identity and Access Management \(IAM\) action information for each principal listed by Amazon Resource Name \(ARN\)\.
+A structure that describes the principals and the resource\-level permissions on the element\.
+
+You can use the `Permissions` structure to grant permissions by providing a list of AWS Identity and Access Management \(IAM\) action information for each principal listed by Amazon Resource Name \(ARN\)\.
+
 To specify no permissions, omit `Permissions`\.  
 
 *Required*: Yes  
