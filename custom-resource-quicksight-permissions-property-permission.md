@@ -9,13 +9,6 @@ To declare this entity in your AWS CloudFormation template, use the following sy
 <a name="custom-resource-quicksight-permissions-property-permissions-syntax.json"></a>
 ### JSON
 
-```
-{
-  "[Actions](#cfn-custom-resource-quicksight-permissions-property-permissions-actions)" : [ String, ... ],
-  "[Principals](#cfn-custom-resource-quicksight-permissions-property-permissions-principals)" : [ String, ... ]
-}
-```
-
 <pre>
  <code>{
   <a href="#cfn-custom-resource-quicksight-permissions-property-permissions-actions">Actions</a> : [ String, ...]
