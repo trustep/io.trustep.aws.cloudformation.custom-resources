@@ -34,14 +34,16 @@ To declare this entity in your AWS CloudFormation template, use the following sy
 
 <a name="cfn-custom-resource-quicksight-permissions-property-permissions-actions"></a>
 
-#### `Actions`
+### `Actions`
 
 The IAM action to grant permissions on\. On update, removed actions will be revoked.
 *Required*: Yes
 *Type*: List of String  
 *Update requires*: [No interruption](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt)
 
-#### Principals  <a name="cfn-custom-resource-quicksight-permissions-property-permissions-principals"></a>
+<a name="cfn-custom-resource-quicksight-permissions-property-permissions-principals"></a>
+
+### `Principals`  
 
 The Amazon Resource Name \(ARN\) of the principals\. This can be one of the following:  
 
