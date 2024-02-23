@@ -1,13 +1,13 @@
 <!-- markdownlint-disable MD033 -->
-# Custom::QuicksightPermissions<a name="custom-resource-quicksight-permissions"></a>
+# Custom::QuicksightPermissions
 
 Manage permissions of Amazon Quicksight Analyses, Dashboards, Data Sets, Data Sources, Folders, Role Custom, Templates, Themes and Topics\.
 
-## Syntax<a name="custom-resource-quicksight-permissions-syntax"></a>
+## Syntax
 
 To declare this entity in your AWS CloudFormation template, use the following syntax:
 
-### JSON<a name="custom-resource-quicksight-permissions-syntax.json"></a>
+### JSON
 
 <pre>
  <code>
@@ -30,26 +30,26 @@ To declare this entity in your AWS CloudFormation template, use the following sy
 </code>
 </pre>
 
-```
-{
-  "Type" : "Custom::QuicksightPermissions",
-  "Properties" : {
-      "[ServiceToken](#cfn-custom-resource-quicksight-permissions-servicetoken)": String,
-      "[AnalysisId](#cfn-custom-resource-quicksight-permissions-analysisid)" : String,
-      "[DashboardId](#cfn-custom-resource-quicksight-permissions-dashboardid)" : String,
-      "[DataSetId](#cfn-custom-resource-quicksight-permissions-datasetdid)" : String,
-      "[DataSourceId](#cfn-custom-resource-quicksight-permissions-datasourceid)" : String,
-      "[FolderId](#cfn-custom-resource-quicksight-permissions-folderid)" : String,
-      "[RoleCustomId](#cfn-custom-resource-quicksight-permissions-rolecustomid)" : String,
-      "[TemplateId](#cfn-custom-resource-quicksight-permissions-templateid)" : String,
-      "[ThemeId](#cfn-custom-resource-quicksight-permissions-themeid)" : String,
-      "[TopicId](#cfn-custom-resource-quicksight-permissions-topicid)" : String,
-      "[Permissions](#cfn-custom-resource-quicksight-permissions-property-permissions)" : [ QuicksightPermission, ... ]
-    }
-}
-```
+### YAML
 
-### YAML<a name="custom-resource-quicksight-permissions-syntax.yaml"></a>
+<pre>
+ <code>
+Type: Custom::QuicksightPermissions
+Properties:
+  <a href="#ServiceToken">ServiceToken</a> : String,
+  <a href="#AnalysisId">AnalysisId</a> : String,
+  <a href="#DashboardId">DashboardId</a> : String,
+  <a href="#DataSetId">DataSetId</a> : String,
+  <a href="#DataSourceId">DataSourceId</a> : String,
+  <a href="#FolderId">FolderId</a> : String,
+  <a href="#RoleCustomId">RoleCustomId</a> : String,
+  <a href="#TemplateId">TemplateId</a> : String,
+  <a href="#ThemeId">ThemeId</a> : String,
+  <a href="#TopicId">TopicId</a> : String,
+  <a href="#Permissions">Permissions</a> :
+    - QuicksightPermission
+ </code>
+</pre>
 
 ```
 Type: Custom::QuicksightPermissions
