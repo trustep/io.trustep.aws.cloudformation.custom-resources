@@ -1,3 +1,4 @@
+<!-- markdownlint-disable MD033 -->
 # Custom::QuicksightPermissions<a name="custom-resource-quicksight-permissions"></a>
 
 Manage permissions of Amazon Quicksight Analyses, Dashboards, Data Sets, Data Sources, Folders, Role Custom, Templates, Themes and Topics\.
@@ -7,6 +8,27 @@ Manage permissions of Amazon Quicksight Analyses, Dashboards, Data Sets, Data So
 To declare this entity in your AWS CloudFormation template, use the following syntax:
 
 ### JSON<a name="custom-resource-quicksight-permissions-syntax.json"></a>
+
+<pre>
+ <code>
+{
+  "Type" : "Custom::QuicksightPermissions",
+  "Properties" : {
+    <a href="#ServiceToken">ServiceToken</a> : String,
+    <a href="#AnalysisId">AnalysisId</a> : String,
+    <a href="#DashboardId">DashboardId</a> : String,
+    <a href="#DataSetId">DataSetId</a> : String,
+    <a href="#DataSourceId">DataSourceId</a> : String,
+    <a href="#FolderId">FolderId</a> : String,
+    <a href="#RoleCustomId">RoleCustomId</a> : String,
+    <a href="#TemplateId">TemplateId</a> : String,
+    <a href="#ThemeId">ThemeId</a> : String,
+    <a href="#TopicId">TopicId</a> : String,
+    <a href="#Permissions">Permissions</a> : [ QuicksightPermission, ... ]
+  }
+}
+</code>
+</pre>
 
 ```
 {
