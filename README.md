@@ -56,13 +56,15 @@ Properties:
 ### `ServiceToken`
 
 The Service Token that implements this custom resource\.  
+
 *Required*: Yes  
-*Type*: String    
+*Type*: String  
 *Update requires*: [Replacement](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement)
 
 ### `AnalysisId`
 
 The ID of the AWS Quicksight Analysis that the permissions will be defined to. Just one of these properties should be specified: AnalsysisId, DashboardId, DataSetId, DataSourceId, FolderId, RoleCustomId, TemplateId, ThemeId, TopicId\.  
+
 *Required*: Yes  
 *Type*: String  
 *Update requires*: [Replacement](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement)
@@ -70,6 +72,7 @@ The ID of the AWS Quicksight Analysis that the permissions will be defined to. J
 ### `DashboardId`
 
 The ID of the AWS Quicksight Dashboard that the permissions will be defined to. Just one of these properties should be specified: AnalsysisId, DashboardId, DataSetId, DataSourceId, FolderId, RoleCustomId, TemplateId, ThemeId, TopicId\.  
+
 *Required*: Yes  
 *Type*: String  
 *Update requires*: [Replacement](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement)
@@ -77,6 +80,7 @@ The ID of the AWS Quicksight Dashboard that the permissions will be defined to. 
 ### `DataSetId`
 
 The ID of the AWS Quicksight Data Set that the permissions will be defined to. Just one of these properties should be specified: AnalsysisId, DashboardId, DataSetId, DataSourceId, FolderId, RoleCustomId, TemplateId, ThemeId, TopicId\.  
+
 *Required*: Yes  
 *Type*: String  
 *Update requires*: [Replacement](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement)
@@ -84,6 +88,7 @@ The ID of the AWS Quicksight Data Set that the permissions will be defined to. J
 ### `DataSourceId`
 
 The ID of the AWS Quicksight Data Source that the permissions will be defined to. Just one of these properties should be specified: AnalsysisId, DashboardId, DataSetId, DataSourceId, FolderId, RoleCustomId, TemplateId, ThemeId, TopicId\.  
+
 *Required*: Yes  
 *Type*: String  
 *Update requires*: [Replacement](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement)
@@ -91,6 +96,7 @@ The ID of the AWS Quicksight Data Source that the permissions will be defined to
 ### `FolderId`
 
 The ID of the AWS Quicksight Folder that the permissions will be defined to. Just one of these properties should be specified: AnalsysisId, DashboardId, DataSetId, DataSourceId, FolderId, RoleCustomId, TemplateId, ThemeId, TopicId\.  
+
 *Required*: Yes  
 *Type*: String  
 *Update requires*: [Replacement](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement)
@@ -98,6 +104,7 @@ The ID of the AWS Quicksight Folder that the permissions will be defined to. Jus
 ### `RoleCustomId`
 
 The ID of the AWS Quicksight Role Custom that the permissions will be defined to. Just one of these properties should be specified: AnalsysisId, DashboardId, DataSetId, DataSourceId, FolderId, RoleCustomId, TemplateId, ThemeId, TopicId\.  
+
 *Required*: Yes  
 *Type*: String  
 *Update requires*: [Replacement](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement)
@@ -105,6 +112,7 @@ The ID of the AWS Quicksight Role Custom that the permissions will be defined to
 ### `TemplateId`
 
 The ID of the AWS Quicksight Template that the permissions will be defined to. Just one of these properties should be specified: AnalsysisId, DashboardId, DataSetId, DataSourceId, FolderId, RoleCustomId, TemplateId, ThemeId, TopicId\.  
+
 *Required*: Yes  
 *Type*: String  
 *Update requires*: [Replacement](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement)
@@ -112,6 +120,7 @@ The ID of the AWS Quicksight Template that the permissions will be defined to. J
 ### ThemeId`
 
 The ID of the AWS Quicksight Theme that the permissions will be defined to. Just one of these properties should be specified: AnalsysisId, DashboardId, DataSetId, DataSourceId, FolderId, RoleCustomId, TemplateId, ThemeId, TopicId\.  
+
 *Required*: Yes  
 *Type*: String  
 *Update requires*: [Replacement](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement)
@@ -119,6 +128,7 @@ The ID of the AWS Quicksight Theme that the permissions will be defined to. Just
 ### `TopicId`
 
 The ID of the AWS Quicksight Topic that the permissions will be defined to. Just one of these properties should be specified: AnalsysisId, DashboardId, DataSetId, DataSourceId, FolderId, RoleCustomId, TemplateId, ThemeId, TopicId\.  
+
 *Required*: Yes  
 *Type*: String  
 *Update requires*: [Replacement](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement)
@@ -127,8 +137,9 @@ The ID of the AWS Quicksight Topic that the permissions will be defined to. Just
 
 A structure that describes the principals and the resource\-level permissions on the element\. You can use the `Permissions` structure to grant permissions by providing a list of AWS Identity and Access Management \(IAM\) action information for each principal listed by Amazon Resource Name \(ARN\)\.
 To specify no permissions, omit `Permissions`\.  
+
 *Required*: Yes  
-*Type*: List of [Permission](custom-resource-quicksight-permissions-property-permission.md)  
+*Type*: List of [QuicksightPermission](custom-resource-quicksight-permissions-property-permission.md)  
 *Update requires*: [No interruption](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt)
 
 ## Return values
