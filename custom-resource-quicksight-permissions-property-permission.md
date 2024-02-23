@@ -10,10 +10,12 @@ To declare this entity in your AWS CloudFormation template, use the following sy
 ### JSON
 
 <pre>
- <code>{
-  <a href="#cfn-custom-resource-quicksight-permissions-property-permissions-actions">Actions</a> : [ String, ...]
+ <code>
+{
+  <a href="#cfn-custom-resource-quicksight-permissions-property-permissions-actions">Actions</a> : [ String, ... ]
   <a href="#cfn-custom-resource-quicksight-permissions-property-permissions-principals">Principals</a> : [ String, ... ]
-}</code>
+}
+</code>
 </pre>
 
 <a name="aws-properties-quicksight-analysis-resourcepermission-syntax.yaml"></a>
@@ -31,13 +33,16 @@ To declare this entity in your AWS CloudFormation template, use the following sy
 ## Properties<a name="custom-resource-quicksight-permissions-property-permissions-properties"></a>
 
 <a name="cfn-custom-resource-quicksight-permissions-property-permissions-actions"></a>
-`Actions`
+
+#### `Actions`
+
 The IAM action to grant permissions on\. On update, removed actions will be revoked.
 *Required*: Yes
 *Type*: List of String  
 *Update requires*: [No interruption](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt)
 
-`Principals`  <a name="cfn-custom-resource-quicksight-permissions-property-permissions-principals"></a>
+#### Principals  <a name="cfn-custom-resource-quicksight-permissions-property-permissions-principals"></a>
+
 The Amazon Resource Name \(ARN\) of the principals\. This can be one of the following:  
 
 + The ARN of an Amazon QuickSight user or group associated.\. \(This is common\.\)
