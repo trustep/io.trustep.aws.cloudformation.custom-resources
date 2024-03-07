@@ -1,0 +1,8 @@
+version=0.1
+[QA.deploy.parameters]
+capabilities = "CAPABILITY_NAMED_IAM"
+parameter_overrides = " QuicksightPermissionsLogGroupRetention=\"5\" "
+
+[PROD.deploy.parameters]
+capabilities = "CAPABILITY_NAMED_IAM"
+parameter_overrides = " QuicksightPermissionsLogGroupRetention=\"5\" " 
