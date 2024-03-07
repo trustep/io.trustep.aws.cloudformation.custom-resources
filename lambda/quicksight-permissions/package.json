@@ -1,0 +1,70 @@
+{
+  "name": "quicksight-permissions",
+  "version": "1.0.0",
+  "description": "Custom Cloudformation Resource implementation for Quicksight Permissions",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test-coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage=true"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trustep/io.trustep.aws.cloudformation.custom-resources.git"
+  },
+  "keywords": [
+    "cloudformation",
+    "quicksight",
+    "custom",
+    "resource",
+    "permission"
+  ],
+  "author": "TruStep",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trustep/io.trustep.aws.cloudformation.custom-resources/issues"
+  },
+  "homepage": "https://github.com/trustep/io.trustep.aws.cloudformation.custom-resources#readme",
+  "jest": {
+    "testEnvironment": "node",
+    "verbose": true,
+    "testTimeout": 500000,
+    "transform": {
+      "^.+\\.m?js$": "ts-jest"
+    },
+    "testMatch": [
+      "<rootDir>/**/*.test.*.mjs",
+      "<rootDir>/**/*.test.mjs",
+      "<rootDir>/**/*.test.*.js",
+      "<rootDir>/**/*.test.js"
+    ],
+    "reporters": [
+      "default",
+      [
+        "jest-html-reporters",
+        {
+          "publicPath": "./html-report",
+          "filename": "report.html"
+        }
+      ]
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.9",
+    "@babel/preset-env": "^7.23.9",
+    "@babel/preset-typescript": "^7.23.3",
+    "aws-sdk-client-mock": "^3.0.1",
+    "aws-sdk-client-mock-jest": "^3.0.1",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "jest-html-reporters": "^3.1.7",
+    "nock": "^13.5.4",
+    "ts-jest": "^29.1.2"
+  },
+  "dependencies": {
+    "@aws-sdk/client-quicksight": "^3.515.0",
+    "@aws-sdk/util-arn-parser": "^3.495.0",
+    "https": "^1.0.0",
+    "url": "^0.11.3"
+  }
+}
