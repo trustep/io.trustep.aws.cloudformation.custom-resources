@@ -1,0 +1,76 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Deploy lambdas to create custom resources using cloudformation'
+Parameters:
+  QuicksightPermissionsLogGroupRetention:
+    Type: Number
+    Description: Retention in days for QuicksightPermissions Lambda Function Log Group.
+    Default: "5"
+  S3BucketCode:
+    Type: String
+    Description: Mandatory. Points to the S3 bucket where cloudformation can find the lambda package.
+    AllowedPattern: "^(?!xn--)(?!sthree-|sthree-configurator)(?!.*--ol-s3$)(?!.*-s3alias$)(?!.*\\.\\.)(?!^\\d+\\.\\d+\\.\\d+\\.\\d+$)[a-z0-9](?:[a-z0-9.-]*[a-z0-9])?$"
+  S3ObjectKeyCode:
+    Type: String
+    Description: Mandatory. Points to the S3 bucket key where cloudformation can find the lambda package.
+    MinLength: "3"
+    MaxLength: "1024"
+    AllowedPattern: "^(?!\\.{2}|^\\.{1,2}/|.*[\\\\/\"%*:<>?\\\\s]+.*|[{}]|.*[&$#]|.*[^\\x20-\\x7E])"
+  S3ObjectVersionCode:
+    Type: String
+    Description: Optional. If the S3 object is versioned, you can points to the S3 object version where cloudformation can find the lambda package.
+Conditions: 
+  UseS3ObjectVersionCode: 
+    Fn::Not:
+      - Fn::Equals:
+        - !Ref S3ObjectVersionCode
+        - ""
+Resources:
+  QuicksightPermissionsLambdaPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref QuicksightPermissions
+      Principal: cloudformation.amazonaws.com
+  QuicksightPermissionsLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${QuicksightPermissions}"
+      RetentionInDays: 5
+  QuicksightPermissions:
+    Type: AWS::Lambda::Function
+    Properties:
+      Description: Cloudformation Custom Resource for Quicksight Permissions
+      Handler: index.handler
+      MemorySize: 128
+      Role: !GetAtt QuicksightPermissionsRole.Arn
+      Runtime: nodejs20.x
+      Timeout: 28
+      Code:
+        S3Bucket: !Ref S3BucketCode
+        S3Key: !Ref S3ObjectKeyCode
+        S3ObjectVersion: !If [UseS3ObjectVersionCode, !Ref DBSnapshotName, !Ref "AWS::NoValue"]
+  QuicksightPermissionsRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Action:
+            - sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service:
+              - lambda.amazonaws.com
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+Outputs:
+  QuicksightPermissionsArn:
+    Description: Arn for QuicksightPermissions lambda function
+    Value: !GetAtt QuicksightPermissions.Arn
+    Export:
+      Name: !Sub "${AWS::StackName}-QuicksightPermissions-Lambda-Arn"
+  QuicksightPermissionsName:
+    Description: Name for QuicksightPermissions lambda function
+    Value: !Ref QuicksightPermissions
+    Export:
+      Name: !Sub "${AWS::StackName}-QuicksightPermissions-Lambda-Name"
