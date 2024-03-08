@@ -14,10 +14,11 @@ Parameters:
     Description: Mandatory. Points to the S3 bucket key where cloudformation can find the lambda package.
     MinLength: "3"
     MaxLength: "1024"
-    AllowedPattern: "^(?!\\.{2}|^\\.{1,2}/|.*[\\\\/\"%*:<>?\\\\s]+.*|[{}]|.*[&$#]|.*[^\\x20-\\x7E])"
+    AllowedPattern: "^[a-zA-Z0-9._/-]{3,1024}$"
   S3ObjectVersionCode:
     Type: String
     Description: Optional. If the S3 object is versioned, you can points to the S3 object version where cloudformation can find the lambda package.
+    Default: ""
 Conditions: 
   UseS3ObjectVersionCode: 
     Fn::Not:
@@ -48,7 +49,7 @@ Resources:
       Code:
         S3Bucket: !Ref S3BucketCode
         S3Key: !Ref S3ObjectKeyCode
-        S3ObjectVersion: !If [UseS3ObjectVersionCode, !Ref DBSnapshotName, !Ref "AWS::NoValue"]
+        S3ObjectVersion: !If [UseS3ObjectVersionCode, !Ref S3ObjectVersionCode, !Ref "AWS::NoValue"]
   QuicksightPermissionsRole:
     Type: AWS::IAM::Role
     Properties:
