@@ -1,0 +1,18 @@
+[
+    {
+        "ParameterKey": "QuicksightPermissionsLogGroupRetention",
+        "ParameterValue": "5"
+    },
+    {
+        "ParameterKey": "S3BucketCode",
+        "ParameterValue": "your-s3-bucket-name"
+    },
+    {
+        "ParameterKey": "S3ObjectKeyCode",
+        "ParameterValue": "your/s3/object/key"
+    },
+    {
+        "ParameterKey": "S3ObjectVersionCode",
+        "ParameterValue": "optional-s3-object-version"
+    }
+]
