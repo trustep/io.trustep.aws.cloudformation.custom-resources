@@ -51,3 +51,6 @@ jspm_packages
 
 # Sonarscan
 **/.scannerwork/
+
+.aws-sam/build.toml
+.aws-sam/build/

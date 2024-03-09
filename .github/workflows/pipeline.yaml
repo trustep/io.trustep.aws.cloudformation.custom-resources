@@ -80,7 +80,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [test]
     outputs:
-      SAM_TEMPLATE: template.yaml
+      SAM_TEMPLATE: io.trustep.aws.cloudformation.custom-resources.sam.yaml
       SAM_CONFIG_FILENAME: samconfig.toml
       TESTING_STACK_NAME: cfn-custom-resources-qa
       TESTING_PIPELINE_EXECUTION_ROLE: arn:aws:iam::881131903847:role/aws-sam-cli-managed-QA-pipel-PipelineExecutionRole-170Z4IY27MVCH
