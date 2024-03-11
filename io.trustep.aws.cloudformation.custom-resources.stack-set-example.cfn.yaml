@@ -1,0 +1,68 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Deploys TruStep Custom Cloudformation Resources in the given accounts and regions.
+Parameters:
+  QuicksightPermissionsLogGroupRetention:
+    Type: Number
+    Description: Retention in days of the cloudwatch log group of the lambda function QuicksightPermissions.
+    Default: "5"
+  S3BucketCode:
+    Type: String
+    Description: Mandatory. S3 Bucket Name where Cloudformation can find lambda package.
+    AllowedPattern: "^(?!xn--)(?!sthree-|sthree-configurator)(?!.*--ol-s3$)(?!.*-s3alias$)(?!.*\\.\\.)(?!^\\d+\\.\\d+\\.\\d+\\.\\d+$)[a-z0-9](?:[a-z0-9.-]*[a-z0-9])?$"
+  S3ObjectKeyCode:
+    Type: String
+    Description: Mandatory. Points to the S3 bucket key where cloudformation can find the lambda package.
+    MinLength: "3"
+    MaxLength: "1024"
+    AllowedPattern: "^[a-zA-Z0-9._/-]{3,1024}$"
+  S3ObjectVersionCode:
+    Type: String
+    Description: Optional. If the S3 object is versioned, you can points to the S3 object version where cloudformation can find the lambda package.
+    Default: ""
+  OrganizationalUnitIdList:
+    Type: List<String>
+    Description: Comma separated list of aws organization unit ID where the stack set will create stack instances.
+  AWSRegionIdlist:
+    Type: List<String>
+    Description: Comma separated list of aws regions where the stack set will create stack instances.
+  AWSAccountIdlist:
+    Type: List<String>
+    Description: Comma separated list of aws account ids where the stack set will create stack instances.
+  CloudformationTemplateURL:
+    Type: String
+    Description: The S3 https endpoint of the cloudformation template that should be deployed to each account.
+Resources:
+  CfnCustomRss:
+    Type: AWS::CloudFormation::StackSet
+    Properties:
+      StackSetName: !Sub '${AWS::StackName}'
+      Description: Defines a set of TruStep custom cloudformation resources.
+      TemplateURL: !Ref CloudformationTemplateURL
+      AutoDeployment: 
+        Enabled: true
+        RetainStacksOnAccountRemoval: false
+      CallAs: SELF
+      Capabilities: 
+        - CAPABILITY_IAM
+      ManagedExecution: 
+        Active: true
+      OperationPreferences: 
+        FailureToleranceCount: 0
+        MaxConcurrentCount: 1
+        RegionConcurrencyType: PARALLEL
+      PermissionModel: SERVICE_MANAGED
+      Parameters: 
+        - ParameterKey: QuicksightPermissionsLogGroupRetention
+          ParameterValue: !Ref QuicksightPermissionsLogGroupRetention
+        - ParameterKey: S3BucketCode
+          ParameterValue: !Ref S3BucketCode
+        - ParameterKey: S3ObjectKeyCode
+          ParameterValue: !Ref S3ObjectKeyCode
+        - ParameterKey: S3ObjectVersionCode
+          ParameterValue: !Ref S3ObjectVersionCode
+      StackInstancesGroup: 
+        - Regions: !Ref AWSRegionIdlist
+          DeploymentTargets: 
+            AccountFilterType: INTERSECTION
+            OrganizationalUnitIds: !Ref OrganizationalUnitIdList
+            Accounts: !Ref AWSAccountIdlist

@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "test-coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage=true"
+    "test-coverage": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage=true",
+    "zip-build": "rm -rf dist && zip-build . -f zip -t \"%NAME%-%VERSION%.%EXT%\""
   },
   "repository": {
     "type": "git",
@@ -59,7 +60,8 @@
     "jest": "^29.7.0",
     "jest-html-reporters": "^3.1.7",
     "nock": "^13.5.4",
-    "ts-jest": "^29.1.2"
+    "ts-jest": "^29.1.2",
+    "zip-build": "^1.8.0"
   },
   "dependencies": {
     "@aws-sdk/client-quicksight": "^3.515.0",

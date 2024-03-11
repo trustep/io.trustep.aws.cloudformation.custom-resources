@@ -1,0 +1,46 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Deploy lambdas to create custom resources using cloudformation
+
+Parameters:
+  QuicksightPermissionsLogGroupRetention:
+    Type: Number
+    Description: Retention in days for QuicksightPermissions Lambda Function Log Group.
+    Default: 5
+Resources:
+  QuicksightPermissions:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs20.x
+      CodeUri: lambda/quicksight-permissions
+      Description: 'Cloudformation Custom Resource for Quicksight Permissions'
+      MemorySize: 128
+      Timeout: 28
+            
+  QuicksightPermissionsLambdaPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !Ref QuicksightPermissions
+      Principal: cloudformation.amazonaws.com
+
+  QuicksightPermissionsLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub '/aws/lambda/${QuicksightPermissions}'
+      RetentionInDays: !Ref QuicksightPermissionsLogGroupRetention
+
+Outputs:
+  QuicksightPermissionsArn:
+    Description: Arn for QuicksightPermissions lambda function
+    Value: !GetAtt QuicksightPermissions.Arn
+    Export:
+      Name: !Sub '${AWS::StackName}-QuicksightPermissions-Lambda-Arn'
+  
+  QuicksightPermissionsName:
+    Description: Name for QuicksightPermissions lambda function
+    Value: !Ref QuicksightPermissions
+    Export:
+      Name: !Sub '${AWS::StackName}-QuicksightPermissions-Lambda-Name'

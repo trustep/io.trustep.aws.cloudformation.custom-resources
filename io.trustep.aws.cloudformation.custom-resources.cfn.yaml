@@ -4,26 +4,26 @@ Parameters:
   QuicksightPermissionsLogGroupRetention:
     Type: Number
     Description: Retention in days for QuicksightPermissions Lambda Function Log Group.
-    Default: "5"
-  S3BucketCode:
+    Default: 5
+  QuicksightPermissionsS3BucketCode:
     Type: String
     Description: Mandatory. Points to the S3 bucket where cloudformation can find the lambda package.
     AllowedPattern: "^(?!xn--)(?!sthree-|sthree-configurator)(?!.*--ol-s3$)(?!.*-s3alias$)(?!.*\\.\\.)(?!^\\d+\\.\\d+\\.\\d+\\.\\d+$)[a-z0-9](?:[a-z0-9.-]*[a-z0-9])?$"
-  S3ObjectKeyCode:
+  QuicksightPermissionsS3ObjectKeyCode:
     Type: String
     Description: Mandatory. Points to the S3 bucket key where cloudformation can find the lambda package.
     MinLength: "3"
     MaxLength: "1024"
     AllowedPattern: "^[a-zA-Z0-9._/-]{3,1024}$"
-  S3ObjectVersionCode:
+  QuicksightPermissionsS3ObjectVersionCode:
     Type: String
     Description: Optional. If the S3 object is versioned, you can points to the S3 object version where cloudformation can find the lambda package.
     Default: ""
 Conditions: 
-  UseS3ObjectVersionCode: 
+  UseQuicksightPermissionsS3ObjectVersionCode: 
     Fn::Not:
       - Fn::Equals:
-        - !Ref S3ObjectVersionCode
+        - !Ref QuicksightPermissionsS3ObjectVersionCode
         - ""
 Resources:
   QuicksightPermissionsLambdaPermission:
@@ -36,7 +36,7 @@ Resources:
     Type: AWS::Logs::LogGroup
     Properties:
       LogGroupName: !Sub "/aws/lambda/${QuicksightPermissions}"
-      RetentionInDays: 5
+      RetentionInDays: !Ref QuicksightPermissionsLogGroupRetention
   QuicksightPermissions:
     Type: AWS::Lambda::Function
     Properties:
@@ -47,9 +47,13 @@ Resources:
       Runtime: nodejs20.x
       Timeout: 28
       Code:
-        S3Bucket: !Ref S3BucketCode
-        S3Key: !Ref S3ObjectKeyCode
-        S3ObjectVersion: !If [UseS3ObjectVersionCode, !Ref S3ObjectVersionCode, !Ref "AWS::NoValue"]
+        S3Bucket: !Ref QuicksightPermissionsS3BucketCode
+        S3Key: !Ref QuicksightPermissionsS3ObjectKeyCode
+        S3ObjectVersion:
+          'Fn::If':
+            - UseQuicksightPermissionsS3ObjectVersionCode
+            - !Ref QuicksightPermissionsS3ObjectVersionCode
+            - !Ref "AWS::NoValue"
   QuicksightPermissionsRole:
     Type: AWS::IAM::Role
     Properties:

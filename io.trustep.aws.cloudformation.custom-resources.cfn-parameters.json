@@ -4,15 +4,15 @@
         "ParameterValue": "5"
     },
     {
-        "ParameterKey": "S3BucketCode",
+        "ParameterKey": "QuicksightPermissionsS3BucketCode",
         "ParameterValue": "your-s3-bucket-name"
     },
     {
-        "ParameterKey": "S3ObjectKeyCode",
+        "ParameterKey": "QuicksightPermissionsS3ObjectKeyCode",
         "ParameterValue": "your/s3/object/key"
     },
     {
-        "ParameterKey": "S3ObjectVersionCode",
+        "ParameterKey": "QuicksightPermissionsS3ObjectVersionCode",
         "ParameterValue": "optional-s3-object-version"
     }
 ]
