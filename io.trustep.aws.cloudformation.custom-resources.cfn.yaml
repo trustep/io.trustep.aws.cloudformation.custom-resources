@@ -4,7 +4,7 @@ Parameters:
   QuicksightPermissionsLogGroupRetention:
     Type: Number
     Description: Retention in days for QuicksightPermissions Lambda Function Log Group.
-    Default: "5"
+    Default: 5
   QuicksightPermissionsS3BucketCode:
     Type: String
     Description: Mandatory. Points to the S3 bucket where cloudformation can find the lambda package.
@@ -47,9 +47,13 @@ Resources:
       Runtime: nodejs20.x
       Timeout: 28
       Code:
-        S3Bucket: !Ref S3BucketCode
-        S3Key: !Ref S3ObjectKeyCode
-        S3ObjectVersion: !If [UseQuicksightPermissionsS3ObjectVersionCode, !Ref QuicksightPermissionsS3ObjectVersionCode, !Ref "AWS::NoValue"]
+        S3Bucket: !Ref QuicksightPermissionsS3BucketCode
+        S3Key: !Ref QuicksightPermissionsS3ObjectKeyCode
+        S3ObjectVersion:
+          'Fn::If':
+            - UseQuicksightPermissionsS3ObjectVersionCode
+            - !Ref QuicksightPermissionsS3ObjectVersionCode
+            - !Ref "AWS::NoValue"
   QuicksightPermissionsRole:
     Type: AWS::IAM::Role
     Properties:
