@@ -3,7 +3,7 @@
 
 Manage permissions of Amazon Quicksight Analyses, Dashboards, Data Sets, Data Sources, Folders, Templates, Themes and Topics\.
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > Permissions on the **same Quicksight element** given to the **same Principal ARN** cannot appears in more than one stack.
 > If you try to do it, only the first one will successfully deploy. Any subsequent stack will fail to deploy.
 

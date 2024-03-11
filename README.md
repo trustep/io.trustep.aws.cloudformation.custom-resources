@@ -29,13 +29,13 @@ After successfull deployment, check if the corresponding cloudformation stack wa
 
 The template is created using AWS SAM Cloudformation extension. You should follow this steps to install it:
 
-1. install AWS CLI
-2. install AWS SAM
+1. install [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
+2. install [AWS SAM](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-getting-started.html)
 3. clone this repository
-4. configure credentials with appropriated permissions to deploy to the account. you can optionally run the sam pipeline bootstrap command to allow aws sam to create a stack containing the user and roles with appropriated permissions, or use a previous one created for other deployments in the account. Please refer to AWS CLI and AWS SAM documentation for further details.
+4. configure credentials with appropriated permissions to deploy to the account. you can optionally run the sam pipeline bootstrap command to allow aws sam to create a stack containing the user and roles with appropriated permissions, or use a previous one created for other deployments in the account. Please refer to [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html) and [AWS SAM](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-getting-started.html) documentation for further details.
 5. Possibly adjust [samconfig.toml](samconfig.toml) file with the desired value for **QuicksightPermissionsLogGroupRetention**. The default is 5 days.
 6. (Possibly) adjust the [io.trustep.aws.cloudformation.custom-resources.sam.yaml](io.trustep.aws.cloudformation.custom-resources.sam.yaml) template to better fit your needs.
-7. run sam build, package and deploy using the with parameters appropriated to your environment, pointing to the samconfig.toml and sam template you customized in the previous steps. You will have to enable CAPABILITY_IAM capability. Please refer to AWS SAM documentation for further details.
+7. run sam build, package and deploy using the with parameters appropriated to your environment, pointing to the samconfig.toml and sam template you customized in the previous steps. You will have to enable CAPABILITY_IAM capability. Please refer to [AWS SAM](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-getting-started.html) documentation for further details.
 8. check if sam deployed the stack without errors. In case of any error, resolve the issue and redeploy. Remember that if its first time deploying the stack, you will need to remove the failed stack before retrying.
 
 Please take notice that the only parameter you should provide is the retention period of the log group used by the lambda. The other methods you will be prompted to provide S3 bucket location details of the lambda package artifacts, things that AWS SAM framework will handle for you automatically with this method.
@@ -56,7 +56,7 @@ But if you will deploy using regular AWS CLI commands, you will probably want to
 
 You should follow this steps to install it using aws cli:
 
-1. install AWS CLI
+1. install [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
 2. clone this repository
 3. configure credentials with appropriated permissions to deploy to the account. You can use any method supported by aws cli to do it. Check AWS CLI documentation for further details.
 4. Obtain the deployment package for the lambda function. It can be downloaded from this github repository in the corresponding release section or you can build your own using the repository. Please check <a href="#pure-cloudformation-method">Building lambda package from the source</a> if you want to build your own package.
@@ -79,7 +79,7 @@ There are many forms to setup the bucket and the role permissions. You can choos
 
 ![Stack Set Method Architecture](cloudformation-stack-set-method-StackSetMethod.drawio.png)
 
-If you setup the S3 bucket properly, you now have to create is a Stack Set. We choose to create it using a AWS SAM template. The SAM deployment process ends up creating a regular cloudformatiom stack based on the SAM template. In the architecture depicted above, you can see the Cloudformation Stack creating the stack set, plus the S3 bucket that will be used to store and share the artifacts to be used when the cloudformation creates the stack instances in each account. It also shows the appropiated bucket policy that will allow the cross account access from each organization account to the S3 bucket artifacts.
+If you setup the S3 bucket properly, you now have to create is a Stack Set. We choose to create it using a [AWS SAM](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-getting-started.html) template. The SAM deployment process ends up creating a regular cloudformatiom stack based on the SAM template. In the architecture depicted above, you can see the Cloudformation Stack creating the stack set, plus the S3 bucket that will be used to store and share the artifacts to be used when the cloudformation creates the stack instances in each account. It also shows the appropiated bucket policy that will allow the cross account access from each organization account to the S3 bucket artifacts.
 
 There are many forms to define your stack set. An example can be seen [here](io.trustep.aws.cloudformation.custom-resources.stack-set-example.cfn.yaml) to illustrate the concept. You can base your deployment in this example, or you can adapt it to suite your specific needs. Nevertheless, consider that in the moment the stack set creates the stack instances, the artifacts should already be available to cloudformation, or else the stack instance creation will fail. You should copy the artifacts to the bucket and before deploying the stack set. You will have to enable CAPABILITY_IAM capability within the stack set you create.
 
@@ -108,3 +108,5 @@ After deploying this stack you can point your cloudformation templates to the la
 To use the custom resources in your cloudformation or aws sam templates, you should point the ServiceToken property to the Arn of the lambda created in the instalation process. You can do it either by hardcoding the value into your template, or by referencing the output variable QuicksightPermissionsArn created in the instalation process. To view the details of the output please check AWS Cloudformation Console.
 
 The way we recommend you reference the custom resource within your template is by adding an input parameter to your template to hold the stack name of the custom resources deployed in installation process. Then you can use Cloudformation [Fn::ImportValue function](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-importvalue.html) with !Sub '${YourCustomResourceStackNameParameter}-QuicksightPermissions-Lambda-Arn'.
+
+Follow the link to view [Custom::QuicksightPermissions](custom-resource-quicksight-permissions.md) detailed documentation.
