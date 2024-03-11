@@ -12,8 +12,8 @@ To declare this entity in your AWS CloudFormation template, use the following sy
 <pre>
  <code>
 {
-  <a href="#actions">Actions</a> : [ String, ... ]
-  <a href="#principals">Principals</a> : [ String, ... ]
+  <a href="#actions">Actions</a>: [ String, ... ]
+  <a href="#principals">Principals</a>: [ String, ... ]
 }
 </code>
 </pre>

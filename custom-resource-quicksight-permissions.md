@@ -13,25 +13,25 @@ To declare this entity in your AWS CloudFormation template, use the following sy
 
 ### JSON
 
-<details>
-<summary></summary>
+<details open>
+<summary>Hide/Show</summary>
 
 <pre>
  <code>
 {
   "Type" : "Custom::QuicksightPermissions",
   "Properties" : {
-    <a href="#ServiceToken">ServiceToken</a> : String,
-    <a href="#AnalysisId">AnalysisId</a> : String,
-    <a href="#DashboardId">DashboardId</a> : String,
-    <a href="#DataSetId">DataSetId</a> : String,
-    <a href="#DataSourceId">DataSourceId</a> : String,
-    <a href="#FolderId">FolderId</a> : String,
-    <a href="#TemplateId">TemplateId</a> : String,
-    <a href="#ThemeId">ThemeId</a> : String,
-    <a href="#TopicId">TopicId</a> : String,
-    <a href="#Permissions">Permissions</a> : [ QuicksightPermission, ... ]
-    <a href="#LinkPermissions">LinkPermissions</a> : [ QuicksightPermission, ... ]
+    <a href="#ServiceToken">ServiceToken</a>: String,
+    <a href="#AnalysisId">AnalysisId</a>: String,
+    <a href="#DashboardId">DashboardId</a>: String,
+    <a href="#DataSetId">DataSetId</a>: String,
+    <a href="#DataSourceId">DataSourceId</a>: String,
+    <a href="#FolderId">FolderId</a>: String,
+    <a href="#TemplateId">TemplateId</a>: String,
+    <a href="#ThemeId">ThemeId</a>: String,
+    <a href="#TopicId">TopicId</a>: String,
+    <a href="#Permissions">Permissions</a>: [ QuicksightPermission, ... ]
+    <a href="#LinkPermissions">LinkPermissions</a>: [ QuicksightPermission, ... ]
   }
 }
 </code>
@@ -40,22 +40,22 @@ To declare this entity in your AWS CloudFormation template, use the following sy
 
 ### YAML
 
-<details>
-<summary></summary>
+<details open>
+<summary>Hide/Show</summary>
 
 <pre>
  <code>
 Type: Custom::QuicksightPermissions
 Properties:
-  <a href="#ServiceToken">ServiceToken</a> : String,
-  <a href="#AnalysisId">AnalysisId</a> : String,
-  <a href="#DashboardId">DashboardId</a> : String,
-  <a href="#DataSetId">DataSetId</a> : String,
-  <a href="#DataSourceId">DataSourceId</a> : String,
-  <a href="#FolderId">FolderId</a> : String,
-  <a href="#TemplateId">TemplateId</a> : String,
-  <a href="#ThemeId">ThemeId</a> : String,
-  <a href="#TopicId">TopicId</a> : String,
+  <a href="#ServiceToken">ServiceToken</a>: String
+  <a href="#AnalysisId">AnalysisId</a>: String
+  <a href="#DashboardId">DashboardId</a>: String
+  <a href="#DataSetId">DataSetId</a>: String
+  <a href="#DataSourceId">DataSourceId</a>: String
+  <a href="#FolderId">FolderId</a>: String
+  <a href="#TemplateId">TemplateId</a>: String
+  <a href="#ThemeId">ThemeId</a>: String
+  <a href="#TopicId">TopicId</a>: String
   <a href="#Permissions">Permissions</a> :
     - QuicksightPermission
   <a href="#LinkPermissions">LinkPermissions</a> :
@@ -81,7 +81,7 @@ Properties:
 
 ### `ServiceToken`
 
-<details><summary></summary>
+<details><summary>Hide/Show</summary>
 
 The Service Token that implements this custom resource\.  
 
@@ -114,7 +114,7 @@ ServiceToken:
 
 ### `AnalysisId`
 
-<details><summary></summary>
+<details><summary>Hide/Show</summary>
 
 The ID of the AWS Quicksight Analysis that the permissions will be defined to.
 
@@ -137,7 +137,7 @@ Just one of these properties should be specified:
 
 ### `DashboardId`
 
-<details><summary></summary>
+<details><summary>Hide/Show</summary>
 
 The ID of the AWS Quicksight Dashboard that the permissions will be defined to.
 
@@ -160,7 +160,7 @@ Just one of these properties should be specified:
 
 ### `DataSetId`
 
-<details><summary></summary>
+<details><summary>Hide/Show</summary>
 
 The ID of the AWS Quicksight Data Set that the permissions will be defined to.
 
@@ -183,7 +183,7 @@ Just one of these properties should be specified:
 
 ### `DataSourceId`
 
-<details><summary></summary>
+<details><summary>Hide/Show</summary>
 
 The ID of the AWS Quicksight Data Source that the permissions will be defined to.
 
@@ -206,7 +206,7 @@ Just one of these properties should be specified:
 
 ### `FolderId`
 
-<details><summary></summary>
+<details><summary>Hide/Show</summary>
 
 The ID of the AWS Quicksight Folder that the permissions will be defined to.
 
@@ -229,7 +229,7 @@ Just one of these properties should be specified:
 
 ### `TemplateId`
 
-<details><summary></summary>
+<details><summary>Hide/Show</summary>
 
 The ID of the AWS Quicksight Template that the permissions will be defined to.
 
@@ -252,7 +252,7 @@ Just one of these properties should be specified:
 
 ### `ThemeId`
 
-<details><summary></summary>
+<details><summary>Hide/Show</summary>
 
 The ID of the AWS Quicksight Theme that the permissions will be defined to.
 
@@ -275,7 +275,7 @@ Just one of these properties should be specified:
 
 ### `TopicId`
 
-<details><summary></summary>
+<details><summary>Hide/Show</summary>
 
 The ID of the AWS Quicksight Topic that the permissions will be defined to.
 
@@ -298,7 +298,7 @@ Just one of these properties should be specified:
 
 ### `Permissions`
 
-<details><summary></summary>
+<details><summary>Hide/Show</summary>
 
 A structure that describes the principals and the resource\-level permissions on the element\.
 
@@ -315,7 +315,7 @@ You can use the `Permissions` structure to grant permissions by providing a list
 > [!NOTE]  
 > **Applies only for Dashboards \(when DashboardId is specified\)\. If you define LinkPermissions for other element types, they will be ignored.**
 
-<details><summary></summary>
+<details><summary>Hide/Show</summary>
 
 A structure that describes the principals and the resource\-level link permissions on the dashboard\.
 
