@@ -68,6 +68,35 @@ Resources:
               - lambda.amazonaws.com
       ManagedPolicyArns:
         - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Policies: 
+        - PolicyName: QSCFNCustomRssMngmt
+          PolicyDocument:
+            Version: 2012-10-17
+            Statement:
+              - Sid: DescribePermissions
+                Effect: Allow
+                Action:
+                  - "quicksight:DescribeAnalysisPermissions"
+                  - "quicksight:DescribeDashboardPermissions"
+                  - "quicksight:DescribeDataSetPermissions"
+                  - "quicksight:DescribeDataSourcePermissions"
+                  - "quicksight:DescribeFolderPermissions"
+                  - "quicksight:DescribeTemplatePermissions"
+                  - "quicksight:DescribeThemePermissions"
+                  - "quicksight:DescribeTopicPermissions"
+                Resource: '*'
+              - Sid: UpdatePermissions
+                Effect: Allow
+                Action:
+                  - "quicksight:UpdateAnalysisPermissions"
+                  - "quicksight:UpdateDashboardPermissions"
+                  - "quicksight:UpdateDataSetPermissions"
+                  - "quicksight:UpdateDataSourcePermissions"
+                  - "quicksight:UpdateFolderPermissions"
+                  - "quicksight:UpdateTemplatePermissions"
+                  - "quicksight:UpdateThemePermissions"
+                  - "quicksight:UpdateTopicPermissions"
+                Resource: '*'
 Outputs:
   QuicksightPermissionsArn:
     Description: Arn for QuicksightPermissions lambda function
