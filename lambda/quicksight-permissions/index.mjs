@@ -546,15 +546,20 @@ function httpsRequestWrapper(options, context, responseBody) {
 
 async function sendResponse(event, context, responseStatus, responseData, physicalResourceId) {
   let responseObj = {
-    Status: responseStatus,
     PhysicalResourceId: physicalResourceId,
     StackId: event.StackId,
     RequestId: event.RequestId,
     LogicalResourceId: event.LogicalResourceId,
-    Data: responseData,
   };
-  if (responseStatus === "FAILED") {
+  if (responseStatus === RESPONSE_STATUS_FAILED) {
+    responseObj.Status = RESPONSE_STATUS_FAILED
     responseObj.Reason = `${responseData}.\nSee the details in CloudWatch Log Stream: ${context.logStreamName}`;
+  } else if (responseStatus === RESPONSE_STATUS_SUCCESS) {
+    responseObj.Status = RESPONSE_STATUS_SUCCESS
+    responseObj.Data = responseData;
+  } else {
+    responseObj.Status = RESPONSE_STATUS_FAILED
+    responseObj.Reason = `Invalid response generated. Please open issue in github.\nSee the details in CloudWatch Log Stream: ${context.logStreamName}`;
   }
   let responseBody = JSON.stringify(responseObj);
 
@@ -755,7 +760,9 @@ async function applyChanges(
     if (response) {
       ({ responseData, responseStatus } = handleQuicksightUpdateCommandResponse(response, responseData, quicksightElementId, responseStatus));
     } else {
-      responseData = `No changes applied.`;
+      responseData = {
+        Id: quicksightElementId
+      };
       console.log(responseData);
     }
   }
@@ -764,7 +771,9 @@ async function applyChanges(
 function handleQuicksightUpdateCommandResponse(response, responseData, quicksightElementId, responseStatus) {
   console.log(`Response to applied changes:\n${JSON.stringify(response, null, "  ")}`);
   if (response.Status >= 200 && response.Status < 300) {
-    responseData = `Quicksight permissions for ${quicksightElementId} applied.`;
+    responseData = {
+      Id: quicksightElementId
+    };
     responseStatus = RESPONSE_STATUS_SUCCESS;
   } else {
     responseData = `Quicksight permissions for ${quicksightElementId} failed to be applied: ${JSON.stringify(

@@ -555,7 +555,7 @@ describe("handler ", () => {
       },
       signedUrlResponse: { status: "SUCCESS" },
       expectedSignedUrlRequest: {
-        Data: "Quicksight permissions for my-template-id applied.",
+        Data: {Id: "my-template-id"},
         PhysicalResourceId: "template/my-template-id",
         LogicalResourceId: "PruebaCustomResource",
         StackId: "arn:aws:cloudformation:us-east-1:123456789012:stack/my-stack/5d3078a0-d0c0-11ee-83ff-1209d5cd2055",
@@ -676,7 +676,7 @@ describe("handler ", () => {
       },
       signedUrlResponse: { status: "SUCCESS" },
       expectedSignedUrlRequest: {
-        Data: "Quicksight permissions for my-data-set-id applied.",
+        Data: { Id: "my-data-set-id"},
         PhysicalResourceId: "dataset/my-data-set-id",
         LogicalResourceId: "PruebaCustomResource",
         StackId: "arn:aws:cloudformation:us-east-1:123456789012:stack/my-stack/5d3078a0-d0c0-11ee-83ff-1209d5cd2055",
